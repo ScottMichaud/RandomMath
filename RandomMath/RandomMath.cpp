@@ -11,7 +11,7 @@ int RandomMath::ClockDistance(int inPointA, int inPointB, int inNumberOfPoints)
 	int maxReducedPoint = std::max(reducedPointA, reducedPointB);
 	int minReducedPoint = std::min(reducedPointA, reducedPointB);
 
-	int distanceNoWrap = abs(reducedPointB - reducedPointA);
+	int distanceNoWrap = maxReducedPoint - minReducedPoint;
 	int distanceWrap = (inNumberOfPoints - maxReducedPoint) + minReducedPoint;
 
 	return std::min(distanceWrap, distanceNoWrap);
