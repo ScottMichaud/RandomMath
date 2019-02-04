@@ -5,8 +5,8 @@
 
 double RandomMath::ClockDistance(double inPointA, double inPointB, double inWrapValue)
 {
-	double reducedPointA = std::fmod(inPointA, inWrapValue);
-	double reducedPointB = std::fmod(inPointB, inWrapValue);
+	double reducedPointA = PositiveModulo(inPointA, inWrapValue);
+	double reducedPointB = PositiveModulo(inPointB, inWrapValue);
 
 	double maxReducedPoint = std::max(reducedPointA, reducedPointB);
 	double minReducedPoint = std::min(reducedPointA, reducedPointB);
@@ -19,8 +19,8 @@ double RandomMath::ClockDistance(double inPointA, double inPointB, double inWrap
 
 float RandomMath::ClockDistance(float inPointA, float inPointB, float inWrapValue)
 {
-	float reducedPointA = std::fmod(inPointA, inWrapValue);
-	float reducedPointB = std::fmod(inPointB, inWrapValue);
+	float reducedPointA = PositiveModulo(inPointA, inWrapValue);
+	float reducedPointB = PositiveModulo(inPointB, inWrapValue);
 
 	float maxReducedPoint = std::max(reducedPointA, reducedPointB);
 	float minReducedPoint = std::min(reducedPointA, reducedPointB);
@@ -43,6 +43,30 @@ int RandomMath::ClockDistance(int inPointA, int inPointB, int inNumberOfPoints)
 	int distanceWrap = (inNumberOfPoints - maxReducedPoint) + minReducedPoint;
 
 	return std::min(distanceWrap, distanceNoWrap);
+}
+
+double RandomMath::PositiveModulo(double inValue, double inWrapValue)
+{
+	double modulo = std::fmod(inValue, inWrapValue);
+
+	if (modulo < 0)
+	{
+		return inWrapValue + modulo;
+	}
+
+	return modulo;
+}
+
+float RandomMath::PositiveModulo(float inValue, float inWrapValue)
+{
+	float modulo = std::fmod(inValue, inWrapValue);
+
+	if (modulo < 0)
+	{
+		return inWrapValue + modulo;
+	}
+
+	return modulo;
 }
 
 int RandomMath::PositiveModulo(int inValue, int inNumberOfSlices)

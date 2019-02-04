@@ -52,4 +52,35 @@ namespace RandomMath
 			Assert::AreEqual(2.0, ClockDistance(7.0, 5.0, 12.0));
 		}
 	};
+
+	TEST_CLASS(PositiveModuloTests)
+	{
+	public:
+		TEST_METHOD(IntTests)
+		{
+			Assert::AreEqual(1, PositiveModulo(11, 10));
+			Assert::AreEqual(9, PositiveModulo(9, 10));
+			Assert::AreEqual(1, PositiveModulo(-9, 10));
+			Assert::AreEqual(9, PositiveModulo(-1, 10));
+			Assert::AreEqual(0, PositiveModulo(0, 9));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(1.0f, PositiveModulo(11.0f, 10.0f));
+			Assert::AreEqual(9.0f, PositiveModulo(9.0f, 10.0f));
+			Assert::AreEqual(1.0f, PositiveModulo(-9.0f, 10.0f));
+			Assert::AreEqual(9.0f, PositiveModulo(-1.0f, 10.0f));
+			Assert::AreEqual(0.0f, PositiveModulo(0.0f, 9.0f));
+		}
+
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(1.0, PositiveModulo(11.0, 10.0));
+			Assert::AreEqual(9.0, PositiveModulo(9.0, 10.0));
+			Assert::AreEqual(1.0, PositiveModulo(-9.0, 10.0));
+			Assert::AreEqual(9.0, PositiveModulo(-1.0, 10.0));
+			Assert::AreEqual(0.0, PositiveModulo(0.0, 9.0));
+		}
+	};
 }
