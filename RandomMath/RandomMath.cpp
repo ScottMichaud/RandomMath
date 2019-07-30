@@ -47,36 +47,15 @@ int RandomMath::ClockDistance(int inPointA, int inPointB, int inNumberOfPoints)
 
 double RandomMath::PositiveModulo(double inValue, double inWrapValue)
 {
-	double modulo = std::fmod(inValue, inWrapValue);
-
-	if (modulo < 0)
-	{
-		return inWrapValue + modulo;
-	}
-
-	return modulo;
+	return std::fmod((std::fmod(inValue, inWrapValue) + inWrapValue), inWrapValue);
 }
 
 float RandomMath::PositiveModulo(float inValue, float inWrapValue)
 {
-	float modulo = std::fmod(inValue, inWrapValue);
-
-	if (modulo < 0)
-	{
-		return inWrapValue + modulo;
-	}
-
-	return modulo;
+	return std::fmod((std::fmod(inValue, inWrapValue) + inWrapValue), inWrapValue);
 }
 
 int RandomMath::PositiveModulo(int inValue, int inNumberOfSlices)
 {
-	int modulo = inValue % inNumberOfSlices;
-
-	if (modulo < 0)
-	{
-		return inNumberOfSlices + modulo;
-	}
-
-	return modulo;
+	return ((inValue % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices;
 }
