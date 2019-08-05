@@ -1,8 +1,6 @@
 #include "stdafx.h"
 #include "RandomMath.h"
 
-#include <algorithm>
-
 double RandomMath::ClockDistance(double inPointA, double inPointB, double inWrapValue)
 {
 	double reducedPointA = PositiveModulo(inPointA, inWrapValue);

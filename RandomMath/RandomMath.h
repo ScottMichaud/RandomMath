@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm>
+
 namespace RandomMath
 {
 	struct InclusiveDouble { double boundaryToInclude; };
@@ -70,6 +72,22 @@ namespace RandomMath
 	inline bool IsBetween(int inValue, ExclusiveInt inMin, ExclusiveInt inMax)
 	{
 		return inValue > inMin.boundaryToExclude && inValue < inMax.boundaryToExclude;
+	}
+
+	//Clamp
+	inline double Clamp(double inValue, double inMin, double inMax)
+	{
+		return std::min(std::max(inValue, inMin), inMax);
+	}
+
+	inline float Clamp(float inValue, float inMin, float inMax)
+	{
+		return std::min(std::max(inValue, inMin), inMax);
+	}
+
+	inline int Clamp(int inValue, int inMin, int inMax)
+	{
+		return std::min(std::max(inValue, inMin), inMax);
 	}
 
 	double ClockDistance(double inValueA, double inValueB, double inWrapValue);
