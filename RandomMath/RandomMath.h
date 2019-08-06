@@ -90,10 +90,22 @@ namespace RandomMath
 		return std::min(std::max(inValue, inMin), inMax);
 	}
 
+	inline double PositiveModulo(double inValue, double inWrapValue)
+	{
+		return std::fmod((std::fmod(inValue, inWrapValue) + inWrapValue), inWrapValue);
+	}
+
+	inline float PositiveModulo(float inValue, float inWrapValue)
+	{
+		return std::fmod((std::fmod(inValue, inWrapValue) + inWrapValue), inWrapValue);
+	}
+
+	inline int PositiveModulo(int inValue, int inNumberOfSlices)
+	{
+		return ((inValue % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices;
+	}
+
 	double ClockDistance(double inValueA, double inValueB, double inWrapValue);
 	float ClockDistance(float inValueA, float inValueB, float inWrapValue);
 	int ClockDistance(int inValueA, int inValueB, int inNumberOfSlice);
-	double PositiveModulo(double inValue, double inNumberOfSlices);
-	float PositiveModulo(float inValue, float inNumberOfSlices);
-	int PositiveModulo(int inValue, int inNumberOfSlices);
 }

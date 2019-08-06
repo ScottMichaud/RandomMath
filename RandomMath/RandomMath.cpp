@@ -42,18 +42,3 @@ int RandomMath::ClockDistance(int inPointA, int inPointB, int inNumberOfPoints)
 
 	return std::min(distanceWrap, distanceNoWrap);
 }
-
-double RandomMath::PositiveModulo(double inValue, double inWrapValue)
-{
-	return std::fmod((std::fmod(inValue, inWrapValue) + inWrapValue), inWrapValue);
-}
-
-float RandomMath::PositiveModulo(float inValue, float inWrapValue)
-{
-	return std::fmod((std::fmod(inValue, inWrapValue) + inWrapValue), inWrapValue);
-}
-
-int RandomMath::PositiveModulo(int inValue, int inNumberOfSlices)
-{
-	return ((inValue % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices;
-}
