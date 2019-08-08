@@ -83,4 +83,81 @@ namespace RandomMath
 			Assert::AreEqual(0.0, PositiveModulo(0.0, 9.0));
 		}
 	};
+
+	TEST_CLASS(IsBetweenTests)
+	{
+	public:
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(true, IsBetween(2.0, InclusiveDouble{ 2.0 }, ExclusiveDouble{ 3.0 }));
+			Assert::AreEqual(false, IsBetween(3.0, InclusiveDouble{ 2.0 }, ExclusiveDouble{ 3.0 }));
+			Assert::AreEqual(false, IsBetween(2.0, ExclusiveDouble{ 2.0 }, InclusiveDouble{ 3.0 }));
+			Assert::AreEqual(true, IsBetween(3.0, ExclusiveDouble{ 2.0 }, InclusiveDouble{ 3.0 }));
+
+			Assert::AreEqual(true, IsBetween(-2.0, InclusiveDouble{ -2.0 }, ExclusiveDouble{ -1.0 }));
+			Assert::AreEqual(false, IsBetween(-1.0, InclusiveDouble{ -2.0 }, ExclusiveDouble{ -1.0 }));
+			Assert::AreEqual(false, IsBetween(-2.0, ExclusiveDouble{ -2.0 }, InclusiveDouble{ -1.0 }));
+			Assert::AreEqual(true, IsBetween(-1.0, ExclusiveDouble{ -2.0 }, InclusiveDouble{ -1.0 }));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(true, IsBetween(2.0f, InclusiveFloat{ 2.0f }, ExclusiveFloat{ 3.0f }));
+			Assert::AreEqual(false, IsBetween(3.0f, InclusiveFloat{ 2.0f }, ExclusiveFloat{ 3.0f }));
+			Assert::AreEqual(false, IsBetween(2.0f, ExclusiveFloat{ 2.0f }, InclusiveFloat{ 3.0f }));
+			Assert::AreEqual(true, IsBetween(3.0f, ExclusiveFloat{ 2.0f }, InclusiveFloat{ 3.0f }));
+
+			Assert::AreEqual(true, IsBetween(-2.0f, InclusiveFloat{ -2.0f }, ExclusiveFloat{ -1.0f }));
+			Assert::AreEqual(false, IsBetween(-1.0f, InclusiveFloat{ -2.0f }, ExclusiveFloat{ -1.0f }));
+			Assert::AreEqual(false, IsBetween(-2.0f, ExclusiveFloat{ -2.0f }, InclusiveFloat{ -1.0f }));
+			Assert::AreEqual(true, IsBetween(-1.0f, ExclusiveFloat{ -2.0f }, InclusiveFloat{ -1.0f }));
+		}
+
+		TEST_METHOD(IntTests)
+		{
+			Assert::AreEqual(true, IsBetween(2, InclusiveInt{ 2 }, ExclusiveInt{ 3 }));
+			Assert::AreEqual(false, IsBetween(3, InclusiveInt{ 2 }, ExclusiveInt{ 3 }));
+			Assert::AreEqual(false, IsBetween(2, ExclusiveInt{ 2 }, InclusiveInt{ 3 }));
+			Assert::AreEqual(true, IsBetween(3, ExclusiveInt{ 2 }, InclusiveInt{ 3 }));
+
+			Assert::AreEqual(true, IsBetween(-2, InclusiveInt{ -2 }, ExclusiveInt{ -1 }));
+			Assert::AreEqual(false, IsBetween(-1, InclusiveInt{ -2 }, ExclusiveInt{ -1 }));
+			Assert::AreEqual(false, IsBetween(-2, ExclusiveInt{ -2 }, InclusiveInt{ -1 }));
+			Assert::AreEqual(true, IsBetween(-1, ExclusiveInt{ -2 }, InclusiveInt{ -1 }));
+		}
+	};
+
+	TEST_CLASS(ClampTests)
+	{
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(-1.0, Clamp(-10.0, -1.0, 1.0));
+			Assert::AreEqual(1.0, Clamp(10.0, -1.0, 1.0));
+			Assert::AreEqual(-1.0, Clamp(-1.0, -1.0, 1.0));
+			Assert::AreEqual(1.0, Clamp(1.0, -1.0, 1.0));
+			Assert::AreEqual(0.0, Clamp(0.0, -1.0, 1.0));
+			Assert::AreEqual(0.25, Clamp(0.25, -1.0, 1.0));
+			Assert::AreEqual(-0.25, Clamp(-0.25, -1.0, 1.0));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(-1.0f, Clamp(-10.0f, -1.0f, 1.0f));
+			Assert::AreEqual(1.0f, Clamp(10.0f, -1.0f, 1.0f));
+			Assert::AreEqual(-1.0f, Clamp(-1.0f, -1.0f, 1.0f));
+			Assert::AreEqual(1.0f, Clamp(1.0f, -1.0f, 1.0f));
+			Assert::AreEqual(0.0f, Clamp(0.0f, -1.0f, 1.0f));
+			Assert::AreEqual(0.25f, Clamp(0.25f, -1.0f, 1.0f));
+			Assert::AreEqual(-0.25f, Clamp(-0.25f, -1.0f, 1.0f));
+		}
+
+		TEST_METHOD(IntTests)
+		{
+			Assert::AreEqual(-1, Clamp(-10, -1, 1));
+			Assert::AreEqual(1, Clamp(10, -1, 1));
+			Assert::AreEqual(-1, Clamp(-1, -1, 1));
+			Assert::AreEqual(1, Clamp(1, -1, 1));
+			Assert::AreEqual(0, Clamp(0, -1, 1));
+		}
+	};
 }
