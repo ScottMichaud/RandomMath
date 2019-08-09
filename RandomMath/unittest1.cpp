@@ -138,6 +138,13 @@ namespace RandomMath
 			Assert::AreEqual(0.0, Clamp(0.0, -1.0, 1.0));
 			Assert::AreEqual(0.25, Clamp(0.25, -1.0, 1.0));
 			Assert::AreEqual(-0.25, Clamp(-0.25, -1.0, 1.0));
+			Assert::AreEqual(1.0, Clamp(10.0, -1.0, 1.0));
+
+			Assert::AreEqual(-20.0, Clamp(-30.0, -20.0, 2.0));
+			Assert::AreEqual(2.0, Clamp(30.0, -20.0, 2.0));
+			Assert::AreEqual(-10.5, Clamp(-10.5, -10.5, 10.5));
+			Assert::AreEqual(10.5, Clamp(10.5, -10.5, 10.5));
+			Assert::AreEqual(0.0, Clamp(0.0, 0.0, 0.0));
 		}
 
 		TEST_METHOD(FloatTests)
@@ -149,6 +156,13 @@ namespace RandomMath
 			Assert::AreEqual(0.0f, Clamp(0.0f, -1.0f, 1.0f));
 			Assert::AreEqual(0.25f, Clamp(0.25f, -1.0f, 1.0f));
 			Assert::AreEqual(-0.25f, Clamp(-0.25f, -1.0f, 1.0f));
+			Assert::AreEqual(1.0f, Clamp(10.0f, -1.0f, 1.0f));
+
+			Assert::AreEqual(-20.0f, Clamp(-30.0f, -20.0f, 2.0f));
+			Assert::AreEqual(2.0f, Clamp(30.0f, -20.0f, 2.0f));
+			Assert::AreEqual(-10.5f, Clamp(-10.5f, -10.5f, 10.5f));
+			Assert::AreEqual(10.5f, Clamp(10.5f, -10.5f, 10.5f));
+			Assert::AreEqual(0.0f, Clamp(0.0f, 0.0f, 0.0f));
 		}
 
 		TEST_METHOD(IntTests)
@@ -158,6 +172,11 @@ namespace RandomMath
 			Assert::AreEqual(-1, Clamp(-1, -1, 1));
 			Assert::AreEqual(1, Clamp(1, -1, 1));
 			Assert::AreEqual(0, Clamp(0, -1, 1));
+			Assert::AreEqual(1, Clamp(10, -1, 1));
+
+			Assert::AreEqual(-20, Clamp(-30, -20, 2));
+			Assert::AreEqual(2, Clamp(30, -20, 2));
+			Assert::AreEqual(0, Clamp(0, 0, 0));
 		}
 	};
 }
