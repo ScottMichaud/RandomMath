@@ -105,7 +105,45 @@ namespace RandomMath
 		return ((inValue % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices;
 	}
 
-	double ClockDistance(double inValueA, double inValueB, double inWrapValue);
-	float ClockDistance(float inValueA, float inValueB, float inWrapValue);
-	int ClockDistance(int inValueA, int inValueB, int inNumberOfSlice);
+	inline double ClockDistance(double inValueA, double inValueB, double inWrapValue)
+	{
+		double reducedPointA = PositiveModulo(inValueA, inWrapValue);
+		double reducedPointB = PositiveModulo(inValueB, inWrapValue);
+
+		double maxReducedPoint = std::max(reducedPointA, reducedPointB);
+		double minReducedPoint = std::min(reducedPointA, reducedPointB);
+
+		double distanceNoWrap = maxReducedPoint - minReducedPoint;
+		double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+
+		return std::min(distanceNoWrap, distanceWrap);
+	}
+
+	inline float ClockDistance(float inValueA, float inValueB, float inWrapValue)
+	{
+		float reducedPointA = PositiveModulo(inValueA, inWrapValue);
+		float reducedPointB = PositiveModulo(inValueB, inWrapValue);
+
+		float maxReducedPoint = std::max(reducedPointA, reducedPointB);
+		float minReducedPoint = std::min(reducedPointA, reducedPointB);
+
+		float distanceNoWrap = maxReducedPoint - minReducedPoint;
+		float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+
+		return std::min(distanceNoWrap, distanceWrap);
+	}
+
+	inline int ClockDistance(int inValueA, int inValueB, int inNumberOfSlices)
+	{
+		int reducedPointA = PositiveModulo(inValueA, inNumberOfSlices);
+		int reducedPointB = PositiveModulo(inValueB, inNumberOfSlices);
+
+		int maxReducedPoint = std::max(reducedPointA, reducedPointB);
+		int minReducedPoint = std::min(reducedPointA, reducedPointB);
+
+		int distanceNoWrap = maxReducedPoint - minReducedPoint;
+		int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
+
+		return std::min(distanceWrap, distanceNoWrap);
+	}
 }
