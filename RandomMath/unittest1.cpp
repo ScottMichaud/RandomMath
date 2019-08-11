@@ -3,8 +3,9 @@
 #include "RandomMath.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace RandomMath;
 
-namespace RandomMath
+namespace RandomMathTests
 {		
 	TEST_CLASS(ClockDistanceTests)
 	{
