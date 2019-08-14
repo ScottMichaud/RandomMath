@@ -128,6 +128,25 @@ namespace RandomMathTests
 		}
 	};
 
+	TEST_CLASS(LerpTests)
+	{
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(0.67, Lerp(0.67, 2.63, 0.0)); //At start, imprecise min and max (tests for round error on bounds)
+			Assert::AreEqual(2.63, Lerp(0.67, 2.63, 1.0)); //At end, imprecise min and max (tests for round error on bounds)
+			Assert::AreEqual(1.0, Lerp(0.5, 1.5, 0.5));
+			Assert::AreEqual(-1.0, Lerp(-1.5, -0.5, 0.5));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(0.67f, Lerp(0.67f, 2.63f, 0.0f)); //At start, imprecise min and max (tests for round error on bounds)
+			Assert::AreEqual(2.63f, Lerp(0.67f, 2.63f, 1.0f)); //At end, imprecise min and max (tests for round error on bounds)
+			Assert::AreEqual(1.0f, Lerp(0.5f, 1.5f, 0.5f));
+			Assert::AreEqual(-1.0f, Lerp(-1.5f, -0.5f, 0.5f));
+		}
+	};
+
 	TEST_CLASS(ClampTests)
 	{
 		TEST_METHOD(DoubleTests)

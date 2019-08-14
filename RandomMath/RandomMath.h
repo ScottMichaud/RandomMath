@@ -117,6 +117,19 @@ namespace RandomMath
 		return std::min(std::max(inValue, inMin), inMax);
 	}
 
+	// Lerp
+	/// Returns inStart when inAlpha is 0. Returns inEnd when inAlpha is 1. Linearly interpolated between those points. Not clamped at inStart or inEnd.
+	inline double Lerp(double inStart, double inEnd, double inAlpha)
+	{
+		return (inAlpha * inEnd) - ((inAlpha - 1) * inStart);
+	}
+
+	/// Returns inStart when inAlpha is 0. Returns inEnd when inAlpha is 1. Linearly interpolated between those points. Not clamped at inStart or inEnd.
+	inline float Lerp(float inStart, float inEnd, float inAlpha)
+	{
+		return (inAlpha * inEnd) - ((inAlpha - 1) * inStart);
+	}
+
 	// Positive Modulo
 	/// Calculates the modulo and sanitizes negatives.
 	
