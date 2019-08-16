@@ -127,6 +127,99 @@ namespace RandomMathTests
 		}
 	};
 
+	TEST_CLASS(IsIntegerTests)
+	{
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(true, IsInteger(2.0));
+			Assert::AreEqual(false, IsInteger(2.00001));
+			Assert::AreEqual(true, IsInteger(-2.0));
+			Assert::AreEqual(false, IsInteger(-2.00001));
+			Assert::AreEqual(true, IsInteger(0.0));
+			Assert::AreEqual(true, IsInteger(-0.0));
+			Assert::AreEqual(false, IsInteger((1e+300 * 1e+300) * 0.0));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(true, IsInteger(2.0f));
+			Assert::AreEqual(false, IsInteger(2.00001f));
+			Assert::AreEqual(true, IsInteger(-2.0f));
+			Assert::AreEqual(false, IsInteger(-2.00001f));
+			Assert::AreEqual(true, IsInteger(0.0f));
+			Assert::AreEqual(true, IsInteger(-0.0f));
+			Assert::AreEqual(false, IsInteger((1e+37f * 1e+37f) * 0.0f));
+		}
+	};
+
+	TEST_CLASS(IsEvenTests)
+	{
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(true, IsEven(2.0));
+			Assert::AreEqual(true, IsEven(-2.0));
+			Assert::AreEqual(true, IsEven(0.0));
+			Assert::AreEqual(false, IsEven(1.0));
+			Assert::AreEqual(false, IsEven(-1.0));
+			Assert::AreEqual(false, IsEven(2.5));
+			Assert::AreEqual(false, IsEven(-2.5));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(true, IsEven(2.0f));
+			Assert::AreEqual(true, IsEven(-2.0f));
+			Assert::AreEqual(true, IsEven(0.0f));
+			Assert::AreEqual(false, IsEven(1.0f));
+			Assert::AreEqual(false, IsEven(-1.0f));
+			Assert::AreEqual(false, IsEven(2.5f));
+			Assert::AreEqual(false, IsEven(-2.5f));
+		}
+
+		TEST_METHOD(IntTests)
+		{
+			Assert::AreEqual(true, IsEven(2));
+			Assert::AreEqual(true, IsEven(-2));
+			Assert::AreEqual(true, IsEven(0));
+			Assert::AreEqual(false, IsEven(1));
+			Assert::AreEqual(false, IsEven(-1));
+		}
+	};
+
+	TEST_CLASS(IsOddTests)
+	{
+		TEST_METHOD(DoubleTests)
+		{
+			Assert::AreEqual(false, IsOdd(2.0));
+			Assert::AreEqual(false, IsOdd(-2.0));
+			Assert::AreEqual(false, IsOdd(0.0));
+			Assert::AreEqual(true, IsOdd(1.0));
+			Assert::AreEqual(true, IsOdd(-1.0));
+			Assert::AreEqual(false, IsOdd(2.5));
+			Assert::AreEqual(false, IsOdd(-2.5));
+		}
+
+		TEST_METHOD(FloatTests)
+		{
+			Assert::AreEqual(false, IsOdd(2.0f));
+			Assert::AreEqual(false, IsOdd(-2.0f));
+			Assert::AreEqual(false, IsOdd(0.0f));
+			Assert::AreEqual(true, IsOdd(1.0f));
+			Assert::AreEqual(true, IsOdd(-1.0f));
+			Assert::AreEqual(false, IsOdd(2.5f));
+			Assert::AreEqual(false, IsOdd(-2.5f));
+		}
+
+		TEST_METHOD(IntTests)
+		{
+			Assert::AreEqual(false, IsOdd(2));
+			Assert::AreEqual(false, IsOdd(-2));
+			Assert::AreEqual(false, IsOdd(0));
+			Assert::AreEqual(true, IsOdd(1));
+			Assert::AreEqual(true, IsOdd(-1));
+		}
+	};
+
 	TEST_CLASS(LerpTests)
 	{
 		TEST_METHOD(DoubleTests)

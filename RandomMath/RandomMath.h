@@ -98,6 +98,46 @@ namespace RandomMath
 		return inValue > inMin.boundaryToExclude && inValue < inMax.boundaryToExclude;
 	}
 
+	inline bool IsInteger(float inValue)
+	{
+		return std::floor(inValue) == inValue;
+	}
+
+	inline bool IsInteger(double inValue)
+	{
+		return std::floor(inValue) == inValue;
+	}
+
+	inline bool IsEven(int inValue)
+	{
+		return inValue % 2 == 0;
+	}
+
+	inline bool IsEven(float inValue)
+	{
+		return IsInteger(inValue) && (std::remainder(inValue, 2.0f) == 0);
+	}
+
+	inline bool IsEven(double inValue)
+	{
+		return IsInteger(inValue) && (std::remainder(inValue, 2.0) == 0);
+	}
+
+	inline bool IsOdd(int inValue)
+	{
+		return inValue % 2 != 0;
+	}
+
+	inline bool IsOdd(float inValue)
+	{
+		return IsInteger(inValue) && (std::remainder(inValue, 2.0f) != 0);
+	}
+
+	inline bool IsOdd(double inValue)
+	{
+		return IsInteger(inValue) && (std::remainder(inValue, 2.0) != 0);
+	}
+
 	// Clamp
 	/// If inValue is lower than inMin, returns inMin. If inValue is higher than inMax, returns inMax. Returns inValue if it's between. NaN/etc. are not accounted for.
 	inline double Clamp(double inValue, double inMin, double inMax)
