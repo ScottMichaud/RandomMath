@@ -98,41 +98,52 @@ namespace RandomMath
 		return inValue > inMin.boundaryToExclude && inValue < inMax.boundaryToExclude;
 	}
 
+	// IsInteger
+	/// Returns true if inValue does not have a fractional component.
 	inline bool IsInteger(float inValue)
 	{
 		return std::floor(inValue) == inValue;
 	}
 
+	/// Returns true if inValue does not have a fractional component.
 	inline bool IsInteger(double inValue)
 	{
 		return std::floor(inValue) == inValue;
 	}
 
+	// IsEven
+	/// Returns true if inValue is even.
 	inline bool IsEven(int inValue)
 	{
 		return inValue % 2 == 0;
 	}
 
+	/// Returns true if inValue is even and doesn't have a fractional component.
 	inline bool IsEven(float inValue)
 	{
 		return IsInteger(inValue) && (std::remainder(inValue, 2.0f) == 0);
 	}
 
+	/// Returns true if inValue is even and doesn't have a fractional component.
 	inline bool IsEven(double inValue)
 	{
 		return IsInteger(inValue) && (std::remainder(inValue, 2.0) == 0);
 	}
 
+	// IsOdd
+	/// Returns true if inValue is odd.
 	inline bool IsOdd(int inValue)
 	{
 		return inValue % 2 != 0;
 	}
 
+	/// Returns true if inValue is odd and doesn't have a fractional component.
 	inline bool IsOdd(float inValue)
 	{
 		return IsInteger(inValue) && (std::remainder(inValue, 2.0f) != 0);
 	}
 
+	/// Returns true if inValue is odd and doesn't have a fractional component.
 	inline bool IsOdd(double inValue)
 	{
 		return IsInteger(inValue) && (std::remainder(inValue, 2.0) != 0);
