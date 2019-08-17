@@ -7,11 +7,11 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace RandomMath;
 
 namespace RandomMathTests
-{		
+{
 	TEST_CLASS(ClockDistanceTests)
 	{
 	public:
-		
+
 		TEST_METHOD(IntTests)
 		{
 			Assert::AreEqual(1, ClockDistance(1, 2, 12)); //1 and 2 are two apart on a 12-slice clock.
