@@ -14,8 +14,8 @@ namespace RandomMathTests
 
 		TEST_METHOD(IntTests)
 		{
-			Assert::AreEqual(1, ClockDistance(1, 2, 12)); //1 and 2 are two apart on a 12-slice clock.
-			Assert::AreEqual(2, ClockDistance(11, 1, 12)); //11 and 1 are 2 apart on a 12-slice clock.
+			Assert::AreEqual(1, ClockDistance(1, 2, 12)); //1 and 2 are one apart on a 12-slice clock.
+			Assert::AreEqual(2, ClockDistance(11, 1, 12)); //11 and 1 are two apart on a 12-slice clock.
 			Assert::AreEqual(0, ClockDistance(12, 12, 12));
 			Assert::AreEqual(0, ClockDistance(1, 1, 12));
 			Assert::AreEqual(2, ClockDistance(1, 11, 12));
@@ -28,8 +28,8 @@ namespace RandomMathTests
 
 		TEST_METHOD(FloatTests)
 		{
-			Assert::AreEqual(1.0f, ClockDistance(1.0f, 2.0f, 12.0f)); //1 and 2 are two apart on a 12-slice clock.
-			Assert::AreEqual(2.0f, ClockDistance(11.0f, 1.0f, 12.0f)); //11 and 1 are 2 apart on a 12-slice clock.
+			Assert::AreEqual(1.0f, ClockDistance(1.0f, 2.0f, 12.0f)); //1 and 2 are one apart on a 12-slice clock.
+			Assert::AreEqual(2.0f, ClockDistance(11.0f, 1.0f, 12.0f)); //11 and 1 are two apart on a 12-slice clock.
 			Assert::AreEqual(0.0f, ClockDistance(12.0f, 12.0f, 12.0f));
 			Assert::AreEqual(0.0f, ClockDistance(1.0f, 1.0f, 12.0f));
 			Assert::AreEqual(2.0f, ClockDistance(1.0f, 11.0f, 12.0f));
@@ -42,8 +42,8 @@ namespace RandomMathTests
 
 		TEST_METHOD(DoubleTests)
 		{
-			Assert::AreEqual(1.0, ClockDistance(1.0, 2.0, 12.0)); //1 and 2 are two apart on a 12-slice clock.
-			Assert::AreEqual(2.0, ClockDistance(11.0, 1.0, 12.0)); //11 and 1 are 2 apart on a 12-slice clock.
+			Assert::AreEqual(1.0, ClockDistance(1.0, 2.0, 12.0)); //1 and 2 are one apart on a 12-slice clock.
+			Assert::AreEqual(2.0, ClockDistance(11.0, 1.0, 12.0)); //11 and 1 are two apart on a 12-slice clock.
 			Assert::AreEqual(0.0, ClockDistance(12.0, 12.0, 12.0));
 			Assert::AreEqual(0.0, ClockDistance(1.0, 1.0, 12.0));
 			Assert::AreEqual(2.0, ClockDistance(1.0, 11.0, 12.0));
