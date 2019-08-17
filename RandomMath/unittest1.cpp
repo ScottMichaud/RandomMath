@@ -1,6 +1,8 @@
 #include "CppUnitTest.h"
 #include "RandomMath.h"
 
+#include <limits>
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace RandomMath;
 
@@ -137,7 +139,7 @@ namespace RandomMathTests
 			Assert::AreEqual(false, IsInteger(-2.00001));
 			Assert::AreEqual(true, IsInteger(0.0));
 			Assert::AreEqual(true, IsInteger(-0.0));
-			Assert::AreEqual(false, IsInteger((1e+300 * 1e+300) * 0.0));
+			Assert::AreEqual(false, IsInteger(std::numeric_limits<double>::quiet_NaN() * 0.0));
 		}
 
 		TEST_METHOD(FloatTests)
@@ -148,7 +150,7 @@ namespace RandomMathTests
 			Assert::AreEqual(false, IsInteger(-2.00001f));
 			Assert::AreEqual(true, IsInteger(0.0f));
 			Assert::AreEqual(true, IsInteger(-0.0f));
-			Assert::AreEqual(false, IsInteger((1e+37f * 1e+37f) * 0.0f));
+			Assert::AreEqual(false, IsInteger(std::numeric_limits<float>::quiet_NaN() * 0.0f));
 		}
 	};
 
