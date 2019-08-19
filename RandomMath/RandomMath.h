@@ -23,6 +23,15 @@ namespace RandomMath
 	/// Refers to an "up-to but excluding" signed integer parameter (in math's interval notation: a round bracket). Use like: "ExclusiveInt { 2 }".
 	struct ExclusiveInt { int boundaryToExclude; };
 
+	/// Refers to a 64-bit decimal parameter that's guaranteed to not need a bounds check. Use like: "InRangeDouble { 2.0 }".
+	struct InRangeDouble { double sanitizedValue; };
+
+	/// Refers to a 32-bit decimal parameter that's guaranteed to not need a bounds check. Use like: "InRangeFloat { 2.0f }".
+	struct InRangeFloat { float sanitizedValue; };
+
+	/// Refers to a signed integer parameter that's guaranteed to not need a bounds check. Use like: "InRangeDouble { 2.0 }".
+	struct InRangeInt { int sanitizedValue; };
+
 	// IsBetween (Double)
 	/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
 	inline bool IsBetween(double inValue, InclusiveDouble inMin, InclusiveDouble inMax)
@@ -259,6 +268,42 @@ namespace RandomMath
 
 		int maxReducedPoint = std::max(reducedPointA, reducedPointB);
 		int minReducedPoint = std::min(reducedPointA, reducedPointB);
+
+		int distanceNoWrap = maxReducedPoint - minReducedPoint;
+		int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
+
+		return std::min(distanceWrap, distanceNoWrap);
+	}
+
+	/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
+	inline double ClockDistance(InRangeDouble inValueA, InRangeDouble inValueB, double inWrapValue)
+	{
+		double maxReducedPoint = std::max(inValueA.sanitizedValue, inValueB.sanitizedValue);
+		double minReducedPoint = std::min(inValueA.sanitizedValue, inValueB.sanitizedValue);
+
+		double distanceNoWrap = maxReducedPoint - minReducedPoint;
+		double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+
+		return std::min(distanceNoWrap, distanceWrap);
+	}
+
+	/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
+	inline float ClockDistance(InRangeFloat inValueA, InRangeFloat inValueB, float inWrapValue)
+	{
+		float maxReducedPoint = std::max(inValueA.sanitizedValue, inValueB.sanitizedValue);
+		float minReducedPoint = std::min(inValueA.sanitizedValue, inValueB.sanitizedValue);
+
+		float distanceNoWrap = maxReducedPoint - minReducedPoint;
+		float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+
+		return std::min(distanceNoWrap, distanceWrap);
+	}
+
+	/// Calculates shortest distance between two reduced points on a looping interval [0, inNumberOfSlices)
+	inline int ClockDistance(InRangeInt inValueA, InRangeInt inValueB, int inNumberOfSlices)
+	{
+		int maxReducedPoint = std::max(inValueA.sanitizedValue, inValueB.sanitizedValue);
+		int minReducedPoint = std::min(inValueA.sanitizedValue, inValueB.sanitizedValue);
 
 		int distanceNoWrap = maxReducedPoint - minReducedPoint;
 		int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
