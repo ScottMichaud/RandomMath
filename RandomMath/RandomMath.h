@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace RandomMath
+namespace RandomMathWIP
 {
 	/// Refers to an "up-to and including" 64-bit decimal parameter (in math's interval notation: a square bracket). Use like: "InclusiveDouble { 2.0 }".
 	struct InclusiveDouble { double boundaryToInclude; };

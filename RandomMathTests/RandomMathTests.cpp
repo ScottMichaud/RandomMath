@@ -4,7 +4,7 @@
 #include <limits>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace RandomMath;
+using namespace RandomMathWIP;
 
 namespace RandomMathTests
 {
