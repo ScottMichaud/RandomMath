@@ -5,106 +5,84 @@
 
 namespace RandomMathWIP
 {
-	/// Refers to an "up-to and including" 64-bit decimal parameter (in math's interval notation: a square bracket). Use like: "InclusiveDouble { 2.0 }".
-	struct InclusiveDouble { double boundaryToInclude; };
+	namespace IncludeStartIncludeEnd {
+		/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
+		inline bool IsBetween(double inValue, double inMin, double inMax)
+		{
+			return inValue >= inMin && inValue <= inMax;
+		}
 
-	/// Refers to an "up-to and including" 32-bit decimal parameter (in math's interval notation: a square bracket). Use like: "InclusiveFloat { 2.0f }".
-	struct InclusiveFloat { float boundaryToInclude; };
+		/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
+		inline bool IsBetween(float inValue, float inMin, float inMax)
+		{
+			return inValue >= inMin && inValue <= inMax;
+		}
 
-	/// Refers to an "up-to and including" signed integer parameter (in math's interval notation: a square bracket). Use like: "InclusiveInt { 2 }".
-	struct InclusiveInt { int boundaryToInclude; };
-
-	/// Refers to an "up-to but excluding" 64-bit decimal parameter (in math's interval notation: a round bracket). Use like: "ExclusiveDouble { 2.0 }".
-	struct ExclusiveDouble { double boundaryToExclude; };
-
-	/// Refers to an "up-to but excluding" 32-bit decimal parameter (in math's interval notation: a round bracket). Use like: "ExclusiveFloat { 2.0f }".
-	struct ExclusiveFloat { float boundaryToExclude; };
-
-	/// Refers to an "up-to but excluding" signed integer parameter (in math's interval notation: a round bracket). Use like: "ExclusiveInt { 2 }".
-	struct ExclusiveInt { int boundaryToExclude; };
-
-	/// Refers to a 64-bit decimal parameter that's guaranteed to not need a bounds check. Use like: "InRangeDouble { 2.0 }".
-	struct InRangeDouble { double sanitizedValue; };
-
-	/// Refers to a 32-bit decimal parameter that's guaranteed to not need a bounds check. Use like: "InRangeFloat { 2.0f }".
-	struct InRangeFloat { float sanitizedValue; };
-
-	/// Refers to a signed integer parameter that's guaranteed to not need a bounds check. Use like: "InRangeDouble { 2.0 }".
-	struct InRangeInt { int sanitizedValue; };
-
-	// IsBetween (Double)
-	/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
-	inline bool IsBetween(double inValue, InclusiveDouble inMin, InclusiveDouble inMax)
-	{
-		return inValue >= inMin.boundaryToInclude && inValue <= inMax.boundaryToInclude;
+		/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
+		inline bool IsBetween(int inValue, int inMin, int inMax)
+		{
+			return inValue >= inMin && inValue <= inMax;
+		}
 	}
 
-	/// Returns true if inValue is inMin or somewhere between inMin and inMax; false if it's inMax or otherwise.
-	inline bool IsBetween(double inValue, InclusiveDouble inMin, ExclusiveDouble inMax)
-	{
-		return inValue >= inMin.boundaryToInclude && inValue < inMax.boundaryToExclude;
+	namespace IncludeStartExcludeEnd {
+		/// Returns true if inValue is inMin or somewhere between inMin and inMax; false if it's inMax or otherwise.
+		inline bool IsBetween(double inValue, double inMin, double inMax)
+		{
+			return inValue >= inMin && inValue < inMax;
+		}
+
+		/// Returns true if inValue is inMin or somewhere between inMin and inMax; false if it's inMax or otherwise.
+		inline bool IsBetween(float inValue, float inMin, float inMax)
+		{
+			return inValue >= inMin && inValue < inMax;
+		}
+
+		/// Returns true if inValue is inMin or somewhere between inMin and inMax; false if it's inMax or otherwise.
+		inline bool IsBetween(int inValue, int inMin, int inMax)
+		{
+			return inValue >= inMin && inValue < inMax;
+		}
 	}
 
-	/// Returns true if inValue is inMax or somewhere between inMin and inMax; false if it's inMin or otherwise.
-	inline bool IsBetween(double inValue, ExclusiveDouble inMin, InclusiveDouble inMax)
-	{
-		return inValue > inMin.boundaryToExclude && inValue <= inMax.boundaryToInclude;
+	namespace ExcludeStartIncludeEnd {
+		/// Returns true if inValue is inMax or somewhere between inMin and inMax; false if it's inMin or otherwise.
+		inline bool IsBetween(double inValue, double inMin, double inMax)
+		{
+			return inValue > inMin && inValue <= inMax;
+		}
+
+		/// Returns true if inValue is inMax or somewhere between inMin and inMax; false if it's inMin or otherwise.
+		inline bool IsBetween(float inValue, float inMin, float inMax)
+		{
+			return inValue > inMin && inValue <= inMax;
+		}
+
+		/// Returns true if inValue is inMax or somewhere between inMin and inMax; false if it's inMin or otherwise.
+		inline bool IsBetween(int inValue, int inMin, int inMax)
+		{
+			return inValue > inMin && inValue <= inMax;
+		}
 	}
 
-	/// Returns true if inValue is between inMin and inMax; false if it's inMin, inMax, or otherwise.
-	inline bool IsBetween(double inValue, ExclusiveDouble inMin, ExclusiveDouble inMax)
-	{
-		return inValue > inMin.boundaryToExclude && inValue < inMax.boundaryToExclude;
-	}
+	namespace ExcludeStartExcludeEnd {
+		/// Returns true if inValue is between inMin and inMax; false if it's inMin, inMax, or otherwise.
+		inline bool IsBetween(double inValue, double inMin, double inMax)
+		{
+			return inValue > inMin && inValue < inMax;
+		}
 
-	// IsBetween (Float)
-	/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
-	inline bool IsBetween(float inValue, InclusiveFloat inMin, InclusiveFloat inMax)
-	{
-		return inValue >= inMin.boundaryToInclude && inValue <= inMax.boundaryToInclude;
-	}
+		/// Returns true if inValue is between inMin and inMax; false if it's inMin, inMax, or otherwise.
+		inline bool IsBetween(float inValue, float inMin, float inMax)
+		{
+			return inValue > inMin && inValue < inMax;
+		}
 
-	/// Returns true if inValue is inMin or somewhere between inMin and inMax; false if it's inMax or otherwise.
-	inline bool IsBetween(float inValue, InclusiveFloat inMin, ExclusiveFloat inMax)
-	{
-		return inValue >= inMin.boundaryToInclude && inValue < inMax.boundaryToExclude;
-	}
-
-	/// Returns true if inValue is inMax or somewhere between inMin and inMax; false if it's inMin or otherwise.
-	inline bool IsBetween(float inValue, ExclusiveFloat inMin, InclusiveFloat inMax)
-	{
-		return inValue > inMin.boundaryToExclude && inValue <= inMax.boundaryToInclude;
-	}
-
-	/// Returns true if inValue is between inMin and inMax; false if it's inMin, inMax, or otherwise.
-	inline bool IsBetween(float inValue, ExclusiveFloat inMin, ExclusiveFloat inMax)
-	{
-		return inValue > inMin.boundaryToExclude && inValue < inMax.boundaryToExclude;
-	}
-
-	// IsBetween (Int)
-	/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
-	inline bool IsBetween(int inValue, InclusiveInt inMin, InclusiveInt inMax)
-	{
-		return inValue >= inMin.boundaryToInclude && inValue <= inMax.boundaryToInclude;
-	}
-
-	/// Returns true if inValue is inMin or somewhere between inMin and inMax; false if it's inMax or otherwise.
-	inline bool IsBetween(int inValue, InclusiveInt inMin, ExclusiveInt inMax)
-	{
-		return inValue >= inMin.boundaryToInclude && inValue < inMax.boundaryToExclude;
-	}
-
-	/// Returns true if inValue is inMax or somewhere between inMin and inMax; false if it's inMin or otherwise.
-	inline bool IsBetween(int inValue, ExclusiveInt inMin, InclusiveInt inMax)
-	{
-		return inValue > inMin.boundaryToExclude && inValue <= inMax.boundaryToInclude;
-	}
-
-	/// Returns true if inValue is between inMin and inMax; false if it's inMin, inMax, or otherwise.
-	inline bool IsBetween(int inValue, ExclusiveInt inMin, ExclusiveInt inMax)
-	{
-		return inValue > inMin.boundaryToExclude && inValue < inMax.boundaryToExclude;
+		/// Returns true if inValue is between inMin and inMax; false if it's inMin, inMax, or otherwise.
+		inline bool IsBetween(int inValue, int inMin, int inMax)
+		{
+			return inValue > inMin && inValue < inMax;
+		}
 	}
 
 	// IsInteger
@@ -275,39 +253,50 @@ namespace RandomMathWIP
 		return std::min(distanceWrap, distanceNoWrap);
 	}
 
-	/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
-	inline double ClockDistance(InRangeDouble inValueA, InRangeDouble inValueB, double inWrapValue)
-	{
-		double maxReducedPoint = std::max(inValueA.sanitizedValue, inValueB.sanitizedValue);
-		double minReducedPoint = std::min(inValueA.sanitizedValue, inValueB.sanitizedValue);
+	namespace Reduced {
+		/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
+		inline double ClockDistance(double inValueA, double inValueB, double inWrapValue)
+		{
+			double distance = inValueA - inValueB;
 
-		double distanceNoWrap = maxReducedPoint - minReducedPoint;
-		double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+			if (distance < 0) {
+				return (-distance < (inWrapValue + distance)) ? -distance : (inWrapValue + distance);
+			}
+			else {
+				return (distance < inWrapValue - distance) ? distance : (inWrapValue - distance);
+			}
 
-		return std::min(distanceNoWrap, distanceWrap);
-	}
+			/*double maxReducedPoint = std::max(inValueA, inValueB);
+			double minReducedPoint = std::min(inValueA, inValueB);
 
-	/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
-	inline float ClockDistance(InRangeFloat inValueA, InRangeFloat inValueB, float inWrapValue)
-	{
-		float maxReducedPoint = std::max(inValueA.sanitizedValue, inValueB.sanitizedValue);
-		float minReducedPoint = std::min(inValueA.sanitizedValue, inValueB.sanitizedValue);
+			double distanceNoWrap = maxReducedPoint - minReducedPoint;
+			double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
 
-		float distanceNoWrap = maxReducedPoint - minReducedPoint;
-		float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+			return std::min(distanceNoWrap, distanceWrap);*/
+		}
 
-		return std::min(distanceNoWrap, distanceWrap);
-	}
+		/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
+		inline float ClockDistance(float inValueA, float inValueB, float inWrapValue)
+		{
+			float maxReducedPoint = std::max(inValueA, inValueB);
+			float minReducedPoint = std::min(inValueA, inValueB);
 
-	/// Calculates shortest distance between two reduced points on a looping interval [0, inNumberOfSlices)
-	inline int ClockDistance(InRangeInt inValueA, InRangeInt inValueB, int inNumberOfSlices)
-	{
-		int maxReducedPoint = std::max(inValueA.sanitizedValue, inValueB.sanitizedValue);
-		int minReducedPoint = std::min(inValueA.sanitizedValue, inValueB.sanitizedValue);
+			float distanceNoWrap = maxReducedPoint - minReducedPoint;
+			float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
 
-		int distanceNoWrap = maxReducedPoint - minReducedPoint;
-		int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
+			return std::min(distanceNoWrap, distanceWrap);
+		}
 
-		return std::min(distanceWrap, distanceNoWrap);
+		/// Calculates shortest distance between two reduced points on a looping interval [0, inNumberOfSlices)
+		inline int ClockDistance(int inValueA, int inValueB, int inNumberOfSlices)
+		{
+			int maxReducedPoint = std::max(inValueA, inValueB);
+			int minReducedPoint = std::min(inValueA, inValueB);
+
+			int distanceNoWrap = maxReducedPoint - minReducedPoint;
+			int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
+
+			return std::min(distanceWrap, distanceNoWrap);
+		}
 	}
 }
