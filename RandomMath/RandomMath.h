@@ -257,22 +257,23 @@ namespace RandomMathWIP
 		/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
 		inline double ClockDistance(double inValueA, double inValueB, double inWrapValue)
 		{
-			double distance = inValueA - inValueB;
+			// Testing optimization
+			//double distance = inValueA - inValueB;
 
-			if (distance < 0) {
-				return (-distance < (inWrapValue + distance)) ? -distance : (inWrapValue + distance);
-			}
-			else {
-				return (distance < inWrapValue - distance) ? distance : (inWrapValue - distance);
-			}
+			//if (distance < 0) {
+			//	return (-distance < (inWrapValue + distance)) ? -distance : (inWrapValue + distance);
+			//}
+			//else {
+			//	return (distance < inWrapValue - distance) ? distance : (inWrapValue - distance);
+			//}
 
-			/*double maxReducedPoint = std::max(inValueA, inValueB);
+			double maxReducedPoint = std::max(inValueA, inValueB);
 			double minReducedPoint = std::min(inValueA, inValueB);
 
 			double distanceNoWrap = maxReducedPoint - minReducedPoint;
 			double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
 
-			return std::min(distanceNoWrap, distanceWrap);*/
+			return std::min(distanceNoWrap, distanceWrap);
 		}
 
 		/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
