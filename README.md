@@ -1,5 +1,7 @@
 # RandomMath
 
+#### Version 0.0.1 (WIP)
+
 ## Overview
 RandomMath is a modern C++, header-only library of math algorithms. It comes bundled with a Visual Studio 2019 C++ Unit Test project to define behaviour, but it is intended to be used in **any major, latest-release compiler**. Backward compatibility will be considered if it can be implemented without too many trade-offs.
 
