@@ -193,12 +193,12 @@ namespace RandomMathWIP
 		return ((inValue % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices;
 	}
 
-	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face)
+	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face) Use Reduced::ClockDistance() if the inputs are guaranteed to be between [0, inWrapValue).
 	
 	/// This is useful for calculating rotations. Ex: The Clock Distance between something turned 710 degrees (2
 	/// full turns minus 10 degrees) and something turned 20 degrees (0 full turns and 20 degrees) is 30 degrees.
-	/// You would use ClockDistance(710.0f, 20.0f, 360.0f) to calculate that value. Negatives inValues are valid.
-	/// Distances are positive.
+	/// You would use ClockDistance(710.0f, 20.0f, 360.0f) to calculate that value. inValueA and inValueB can be
+	/// negative. Distances are positive.
 	inline double ClockDistance(double inValueA, double inValueB, double inWrapValue)
 	{
 		double reducedPointA = PositiveModulo(inValueA, inWrapValue);
@@ -213,12 +213,12 @@ namespace RandomMathWIP
 		return std::min(distanceNoWrap, distanceWrap);
 	}
 
-	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face)
+	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face) Use Reduced::ClockDistance() if the inputs are guaranteed to be between [0, inWrapValue).
 
 	/// This is useful for calculating rotations. Ex: The Clock Distance between something turned 710 degrees (2
 	/// full turns minus 10 degrees) and something turned 20 degrees (0 full turns and 20 degrees) is 30 degrees.
-	/// You would use ClockDistance(710.0f, 20.0f, 360.0f) to calculate that value. Negatives inValues are valid.
-	/// Distances are positive.
+	/// You would use ClockDistance(710.0f, 20.0f, 360.0f) to calculate that value. inValueA and inValueB can be
+	/// negative. Distances are positive.
 	inline float ClockDistance(float inValueA, float inValueB, float inWrapValue)
 	{
 		float reducedPointA = PositiveModulo(inValueA, inWrapValue);
@@ -233,12 +233,12 @@ namespace RandomMathWIP
 		return std::min(distanceNoWrap, distanceWrap);
 	}
 
-	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face)
+	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face) Use Reduced::ClockDistance() if the inputs are guaranteed to be between [0, inNumberOfSlices).
 
 	/// This is useful for calculating rotations. Ex: The Clock Distance between something turned 710 degrees (2
 	/// full turns minus 10 degrees) and something turned 20 degrees (0 full turns and 20 degrees) is 30 degrees.
-	/// You would use ClockDistance(710.0f, 20.0f, 360.0f) to calculate that value. Negatives inValues are valid.
-	/// Distances are positive.
+	/// You would use ClockDistance(710.0f, 20.0f, 360.0f) to calculate that value. inValueA and inValueB can be
+	/// negative. Distances are positive.
 	inline int ClockDistance(int inValueA, int inValueB, int inNumberOfSlices)
 	{
 		int reducedPointA = PositiveModulo(inValueA, inNumberOfSlices);
@@ -254,7 +254,7 @@ namespace RandomMathWIP
 	}
 
 	namespace Reduced {
-		/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
+		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue)
 		inline double ClockDistance(double inValueA, double inValueB, double inWrapValue)
 		{
 			// Testing optimization
@@ -276,7 +276,7 @@ namespace RandomMathWIP
 			return std::min(distanceNoWrap, distanceWrap);
 		}
 
-		/// Calculates shortest distance between two reduced points on a looping interval [0, inWrapValue)
+		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue)
 		inline float ClockDistance(float inValueA, float inValueB, float inWrapValue)
 		{
 			float maxReducedPoint = std::max(inValueA, inValueB);
@@ -288,7 +288,7 @@ namespace RandomMathWIP
 			return std::min(distanceNoWrap, distanceWrap);
 		}
 
-		/// Calculates shortest distance between two reduced points on a looping interval [0, inNumberOfSlices)
+		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inNumberOfSlices)
 		inline int ClockDistance(int inValueA, int inValueB, int inNumberOfSlices)
 		{
 			int maxReducedPoint = std::max(inValueA, inValueB);
