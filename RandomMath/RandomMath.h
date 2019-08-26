@@ -280,6 +280,12 @@ namespace RandomMathWIP
 			//	return (distance < otherDir) ? distance : otherDir;
 			//}
 
+			//---------
+
+			//double distance = inValueA - inValueB;
+			//distance = (distance > 0) ? distance : -distance;
+			//output = (distance < inWrapValue - distance) ? distance : (inWrapValue - distance);
+
 
 			double maxReducedPoint = std::max(inValueA, inValueB);
 			double minReducedPoint = std::min(inValueA, inValueB);
