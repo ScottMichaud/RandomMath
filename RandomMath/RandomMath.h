@@ -7,6 +7,9 @@ namespace RandomMathWIP
 {
 	namespace IncludeStartIncludeEnd {
 		/// Returns true if inValue is inMin, inMax, or somewhere between inMin and inMax; false otherwise.
+		///\param inValue The value to check
+		///\param inMin The minimum value, inclusive
+		///\param inMax The maximum value, inclusive
 		inline bool IsBetween(double inValue, double inMin, double inMax)
 		{
 			return inValue >= inMin && inValue <= inMax;
