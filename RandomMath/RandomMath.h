@@ -272,16 +272,16 @@ namespace RandomMathWIP
 
 			//---------
 
-			//double distance = inValueA - inValueB;
+			double distance = inValueA - inValueB;
 
-			//if (distance < 0) {
-            //    double otherDir = inWrapValue + distance;
-			//	return (-distance < otherDir) ? -distance : otherDir;
-			//}
-			//else {
-            //    double otherDir = inWrapValue - distance;
-			//	return (distance < otherDir) ? distance : otherDir;
-			//}
+			if (distance < 0) {
+                double otherDir = inWrapValue + distance;
+				return (-distance < otherDir) ? -distance : otherDir;
+			}
+			else {
+                double otherDir = inWrapValue - distance;
+				return (distance < otherDir) ? distance : otherDir;
+			}
 
 			//---------
 
@@ -290,37 +290,59 @@ namespace RandomMathWIP
 			//output = (distance < inWrapValue - distance) ? distance : (inWrapValue - distance);
 
 
-			double maxReducedPoint = std::max(inValueA, inValueB);
-			double minReducedPoint = std::min(inValueA, inValueB);
+			//double maxReducedPoint = std::max(inValueA, inValueB);
+			//double minReducedPoint = std::min(inValueA, inValueB);
 
-			double distanceNoWrap = maxReducedPoint - minReducedPoint;
-			double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+			//double distanceNoWrap = maxReducedPoint - minReducedPoint;
+			//double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
 
-			return std::min(distanceNoWrap, distanceWrap);
+			//return std::min(distanceNoWrap, distanceWrap);
 		}
 
 		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue)
 		inline float ClockDistance(float inValueA, float inValueB, float inWrapValue)
 		{
-			float maxReducedPoint = std::max(inValueA, inValueB);
-			float minReducedPoint = std::min(inValueA, inValueB);
+			float distance = inValueA - inValueB;
 
-			float distanceNoWrap = maxReducedPoint - minReducedPoint;
-			float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+			if (distance < 0) {
+				float otherDir = inWrapValue + distance;
+				return (-distance < otherDir) ? -distance : otherDir;
+			}
+			else {
+				float otherDir = inWrapValue - distance;
+				return (distance < otherDir) ? distance : otherDir;
+			}
 
-			return std::min(distanceNoWrap, distanceWrap);
+			//float maxReducedPoint = std::max(inValueA, inValueB);
+			//float minReducedPoint = std::min(inValueA, inValueB);
+
+			//float distanceNoWrap = maxReducedPoint - minReducedPoint;
+			//float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
+
+			//return std::min(distanceNoWrap, distanceWrap);
 		}
 
 		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inNumberOfSlices)
 		inline int ClockDistance(int inValueA, int inValueB, int inNumberOfSlices)
 		{
-			int maxReducedPoint = std::max(inValueA, inValueB);
-			int minReducedPoint = std::min(inValueA, inValueB);
+			int distance = inValueA - inValueB;
 
-			int distanceNoWrap = maxReducedPoint - minReducedPoint;
-			int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
+			if (distance < 0) {
+				int otherDir = inNumberOfSlices + distance;
+				return (-distance < otherDir) ? -distance : otherDir;
+			}
+			else {
+				int otherDir = inNumberOfSlices - distance;
+				return (distance < otherDir) ? distance : otherDir;
+			}
 
-			return std::min(distanceWrap, distanceNoWrap);
+			//int maxReducedPoint = std::max(inValueA, inValueB);
+			//int minReducedPoint = std::min(inValueA, inValueB);
+
+			//int distanceNoWrap = maxReducedPoint - minReducedPoint;
+			//int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
+
+			//return std::min(distanceWrap, distanceNoWrap);
 		}
 	}
 }
