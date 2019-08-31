@@ -301,13 +301,16 @@ namespace RandomMathWIP
 		double reducedPointA = PositiveModulo(inValueA, inWrapValue);
 		double reducedPointB = PositiveModulo(inValueB, inWrapValue);
 
-		double maxReducedPoint = std::max(reducedPointA, reducedPointB);
-		double minReducedPoint = std::min(reducedPointA, reducedPointB);
+		double distance = reducedPointA - reducedPointB;
 
-		double distanceNoWrap = maxReducedPoint - minReducedPoint;
-		double distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
-
-		return std::min(distanceNoWrap, distanceWrap);
+		if (distance < 0) {
+			double otherDir = inWrapValue + distance;
+			return (-distance < otherDir) ? -distance : otherDir;
+		}
+		else {
+			double otherDir = inWrapValue - distance;
+			return (distance < otherDir) ? distance : otherDir;
+		}
 	}
 
 	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face) Use Reduced::ClockDistance() if the inputs are guaranteed to be between [0, inWrapValue).
@@ -325,13 +328,15 @@ namespace RandomMathWIP
 		float reducedPointA = PositiveModulo(inValueA, inWrapValue);
 		float reducedPointB = PositiveModulo(inValueB, inWrapValue);
 
-		float maxReducedPoint = std::max(reducedPointA, reducedPointB);
-		float minReducedPoint = std::min(reducedPointA, reducedPointB);
-
-		float distanceNoWrap = maxReducedPoint - minReducedPoint;
-		float distanceWrap = (inWrapValue - maxReducedPoint) + minReducedPoint;
-
-		return std::min(distanceNoWrap, distanceWrap);
+		float distance = reducedPointA - reducedPointB;
+		if (distance < 0) {
+			float otherDir = inWrapValue + distance;
+			return (-distance < otherDir) ? -distance : otherDir;
+		}
+		else {
+			float otherDir = inWrapValue - distance;
+			return (distance < otherDir) ? distance : otherDir;
+		}
 	}
 
 	/// Calculates the shortest distance between two values on an interval that infinitely loops between 0 and inWrapValue. (Ex: digits on a clock face) Use Reduced::ClockDistance() if the inputs are guaranteed to be between [0, inNumberOfSlices).
@@ -349,13 +354,16 @@ namespace RandomMathWIP
 		int reducedPointA = PositiveModulo(inValueA, inNumberOfSlices);
 		int reducedPointB = PositiveModulo(inValueB, inNumberOfSlices);
 
-		int maxReducedPoint = std::max(reducedPointA, reducedPointB);
-		int minReducedPoint = std::min(reducedPointA, reducedPointB);
+		int distance = reducedPointA - reducedPointB;
 
-		int distanceNoWrap = maxReducedPoint - minReducedPoint;
-		int distanceWrap = (inNumberOfSlices - maxReducedPoint) + minReducedPoint;
-
-		return std::min(distanceWrap, distanceNoWrap);
+		if (distance < 0) {
+			int otherDir = inNumberOfSlices + distance;
+			return (-distance < otherDir) ? -distance : otherDir;
+		}
+		else {
+			int otherDir = inNumberOfSlices - distance;
+			return (distance < otherDir) ? distance : otherDir;
+		}
 	}
 
 	namespace Reduced {
