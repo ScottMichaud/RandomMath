@@ -139,7 +139,7 @@ namespace RandomMathWIP
 	///\return true if inValue is an integer
 	inline bool IsInteger(float inValue)
 	{
-		return std::floor(inValue) == inValue;
+		return (int)inValue == inValue;
 	}
 
 	/// Returns true if inValue does not have a fractional component.
@@ -147,7 +147,7 @@ namespace RandomMathWIP
 	///\return true if inValue is an integer
 	inline bool IsInteger(double inValue)
 	{
-		return std::floor(inValue) == inValue;
+		return (int)inValue == inValue;
 	}
 
 	// IsEven
@@ -164,7 +164,7 @@ namespace RandomMathWIP
 	///\return true if inValue is an integer and even
 	inline bool IsEven(float inValue)
 	{
-		return IsInteger(inValue) && (std::remainder(inValue, 2.0f) == 0);
+		return ((int)inValue == inValue) && (std::fmod(inValue, 2.0f) == 0);
 	}
 
 	/// Returns true if inValue is even and doesn't have a fractional component.
@@ -172,7 +172,7 @@ namespace RandomMathWIP
 	///\return true if inValue is an integer and even
 	inline bool IsEven(double inValue)
 	{
-		return IsInteger(inValue) && (std::remainder(inValue, 2.0) == 0);
+		return ((int)inValue == inValue) && (std::fmod(inValue, 2.0) == 0);
 	}
 
 	// IsOdd
@@ -189,7 +189,7 @@ namespace RandomMathWIP
 	///\return true if inValue is an integer and odd
 	inline bool IsOdd(float inValue)
 	{
-		return IsInteger(inValue) && (std::remainder(inValue, 2.0f) != 0);
+		return ((int)inValue == inValue) && (std::fmod(inValue, 2.0f) != 0);
 	}
 
 	/// Returns true if inValue is odd and doesn't have a fractional component.
@@ -197,7 +197,7 @@ namespace RandomMathWIP
 	///\return true if inValue is an integer and odd
 	inline bool IsOdd(double inValue)
 	{
-		return IsInteger(inValue) && (std::remainder(inValue, 2.0) != 0);
+		return ((int)inValue == inValue) && (std::fmod(inValue, 2.0) != 0);
 	}
 
 	// Clamp
