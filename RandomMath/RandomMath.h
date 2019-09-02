@@ -298,10 +298,8 @@ namespace RandomMathWIP
 	///\return The distance between inValueA and inValueB on the circle 0 to inWrapValue
 	inline double ClockDistance(double inValueA, double inValueB, double inWrapValue)
 	{
-		double reducedPointA = PositiveModulo(inValueA, inWrapValue);
-		double reducedPointB = PositiveModulo(inValueB, inWrapValue);
-
-		double distance = reducedPointA - reducedPointB;
+		double distance = std::fmod((std::fmod(inValueA, inWrapValue) + inWrapValue), inWrapValue) -
+			              std::fmod((std::fmod(inValueB, inWrapValue) + inWrapValue), inWrapValue);
 
 		if (distance < 0) {
 			double otherDir = inWrapValue + distance;
@@ -325,10 +323,9 @@ namespace RandomMathWIP
 	///\return The distance between inValueA and inValueB on the circle 0 to inWrapValue
 	inline float ClockDistance(float inValueA, float inValueB, float inWrapValue)
 	{
-		float reducedPointA = PositiveModulo(inValueA, inWrapValue);
-		float reducedPointB = PositiveModulo(inValueB, inWrapValue);
+		float distance = std::fmod((std::fmod(inValueA, inWrapValue) + inWrapValue), inWrapValue) -
+						 std::fmod((std::fmod(inValueB, inWrapValue) + inWrapValue), inWrapValue);
 
-		float distance = reducedPointA - reducedPointB;
 		if (distance < 0) {
 			float otherDir = inWrapValue + distance;
 			return (-distance < otherDir) ? -distance : otherDir;
@@ -351,10 +348,8 @@ namespace RandomMathWIP
 	///\return The distance between inValueA and inValueB on the circle 0 to inNumberOfSlices
 	inline int ClockDistance(int inValueA, int inValueB, int inNumberOfSlices)
 	{
-		int reducedPointA = PositiveModulo(inValueA, inNumberOfSlices);
-		int reducedPointB = PositiveModulo(inValueB, inNumberOfSlices);
-
-		int distance = reducedPointA - reducedPointB;
+		int distance = (((inValueA % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices) -
+			           (((inValueB % inNumberOfSlices) + inNumberOfSlices) % inNumberOfSlices);
 
 		if (distance < 0) {
 			int otherDir = inNumberOfSlices + distance;
