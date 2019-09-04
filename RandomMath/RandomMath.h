@@ -356,7 +356,7 @@ namespace RandomMathWIP
 	}
 
 	namespace Reduced {
-		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue)
+		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue).
 		///\param inValueA The first value (must be smaller than inWrapValue)
 		///\param inValueB The second value (must be smaller than inWrapValue)
 		///\param inWrapValue The maximum value (the minimum is always 0)
@@ -375,7 +375,7 @@ namespace RandomMathWIP
 			}
 		}
 
-		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue)
+		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inWrapValue).
 		///\param inValueA The first value (must be smaller than inWrapValue)
 		///\param inValueB The second value (must be smaller than inWrapValue)
 		///\param inWrapValue The maximum value (the minimum is always 0)
@@ -394,7 +394,7 @@ namespace RandomMathWIP
 			}
 		}
 
-		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inNumberOfSlices)
+		/// Calculates shortest distance between two reduced (within the first iteration of the interval) points on a looping interval [0, inNumberOfSlices).
 		///\param inValueA The first value (must be smaller than inNumberOfSlices)
 		///\param inValueB The second value (must be smaller than inNumberOfSlices)
 		///\param inNumberOfSlices The maximum value (the minimum is always 0)
