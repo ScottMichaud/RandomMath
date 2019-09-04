@@ -133,7 +133,6 @@ namespace RandomMathWIP
 		}
 	}
 
-	// IsInteger
 	/// Returns true if inValue does not have a fractional component.
 	///\param inValue The value to check
 	///\return true if inValue is an integer
@@ -150,7 +149,6 @@ namespace RandomMathWIP
 		return (int)inValue == inValue;
 	}
 
-	// IsEven
 	/// Returns true if inValue is even.
 	///\param inValue The value to check
 	///\return true if inValue is even
@@ -175,7 +173,6 @@ namespace RandomMathWIP
 		return ((int)inValue == inValue) && (std::fmod(inValue, 2.0) == 0);
 	}
 
-	// IsOdd
 	/// Returns true if inValue is odd.
 	///\param inValue The value to check
 	///\return true if inValue is odd
@@ -200,7 +197,6 @@ namespace RandomMathWIP
 		return ((int)inValue == inValue) && (std::fmod(inValue, 2.0) != 0);
 	}
 
-	// Clamp
 	/// If inValue is lower than inMin, returns inMin. If inValue is higher than inMax, returns inMax. Returns inValue if it's between. NaN/etc. are not accounted for.
 	///\param inValue The value to clamp
 	///\param inMin The minimum value
@@ -231,7 +227,6 @@ namespace RandomMathWIP
 		return std::min(std::max(inValue, inMin), inMax);
 	}
 
-	// Lerp
 	/// Returns inStart when inAlpha is 0. Returns inEnd when inAlpha is 1. Linearly interpolated between those points. Not clamped at inStart or inEnd.
 	///\param inStart Will be returned when inAlpha is 0
 	///\param inEnd Will be returned when inAlpha is 1
@@ -252,7 +247,6 @@ namespace RandomMathWIP
 		return (inAlpha * inEnd) - ((inAlpha - 1) * inStart);
 	}
 
-	// Positive Modulo
 	/// Calculates the modulo and sanitizes negatives.
 	
 	/// If you visualize a clock face: asking -13 o'clock via PositiveModulo(-13, 12) would return 11 o'clock.
