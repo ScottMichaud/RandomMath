@@ -173,6 +173,10 @@ namespace RandomMathTests
 			Assert::AreEqual(true, IsInteger(0.0));
 			Assert::AreEqual(true, IsInteger(-0.0));
 			Assert::AreEqual(false, IsInteger(std::numeric_limits<double>::quiet_NaN() * 0.0));
+			Assert::AreEqual(true, IsInteger((double)std::numeric_limits<int>::max()));
+			Assert::AreEqual(true, IsInteger((double)std::numeric_limits<long long int>::max()));
+			Assert::AreEqual(true, IsInteger((double)std::numeric_limits<int>::max()));
+			Assert::AreEqual(true, IsInteger((double)std::numeric_limits<long long int>::max()));
 		}
 
 		TEST_METHOD(FloatTests)
@@ -184,6 +188,10 @@ namespace RandomMathTests
 			Assert::AreEqual(true, IsInteger(0.0f));
 			Assert::AreEqual(true, IsInteger(-0.0f));
 			Assert::AreEqual(false, IsInteger(std::numeric_limits<float>::quiet_NaN() * 0.0f));
+			Assert::AreEqual(true, IsInteger((float)std::numeric_limits<int>::max()));
+			Assert::AreEqual(true, IsInteger((float)std::numeric_limits<long long int>::max()));
+			Assert::AreEqual(true, IsInteger(-(float)std::numeric_limits<int>::max()));
+			Assert::AreEqual(true, IsInteger(-(float)std::numeric_limits<long long int>::max()));
 		}
 	};
 
@@ -198,6 +206,12 @@ namespace RandomMathTests
 			Assert::AreEqual(false, IsEven(-1.0));
 			Assert::AreEqual(false, IsEven(2.5));
 			Assert::AreEqual(false, IsEven(-2.5));
+			// Double has enough precision to realize that int_max is odd.
+			Assert::AreEqual(false, IsEven((double)(std::numeric_limits<int>::max())));
+			Assert::AreEqual(true, IsEven((double)(std::numeric_limits<int>::max()) + 1));
+			Assert::AreEqual(false, IsEven((double)(-std::numeric_limits<int>::max())));
+			Assert::AreEqual(true, IsEven((double)(-std::numeric_limits<int>::max()) - 1));
+			Assert::AreEqual(false, IsEven((double)(-std::numeric_limits<int>::max()) - 2));
 		}
 
 		TEST_METHOD(FloatTests)
@@ -209,6 +223,8 @@ namespace RandomMathTests
 			Assert::AreEqual(false, IsEven(-1.0f));
 			Assert::AreEqual(false, IsEven(2.5f));
 			Assert::AreEqual(false, IsEven(-2.5f));
+			// Float doesn't have enough precision to recognize int_max is odd, but knows it's an integer.
+			Assert::AreEqual(true, IsEven((float)(std::numeric_limits<int>::max()) + 1));
 		}
 
 		TEST_METHOD(IntTests)
@@ -232,6 +248,11 @@ namespace RandomMathTests
 			Assert::AreEqual(true, IsOdd(-1.0));
 			Assert::AreEqual(false, IsOdd(2.5));
 			Assert::AreEqual(false, IsOdd(-2.5));
+			Assert::AreEqual(true, IsOdd((double)(std::numeric_limits<int>::max())));
+			Assert::AreEqual(false, IsOdd((double)(std::numeric_limits<int>::max()) + 1));
+			Assert::AreEqual(true, IsOdd((double)(-std::numeric_limits<int>::max())));
+			Assert::AreEqual(false, IsOdd((double)(-std::numeric_limits<int>::max()) - 1));
+			Assert::AreEqual(true, IsOdd((double)(-std::numeric_limits<int>::max()) - 2));
 		}
 
 		TEST_METHOD(FloatTests)
